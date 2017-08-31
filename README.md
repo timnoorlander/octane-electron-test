@@ -1,3 +1,5 @@
+run npm install && npm run dev
+
 # Octane
 
 Octane 2.0 is a benchmark that measures a JavaScript engine’s performance by running a suite of tests representative of certain use cases in JavaScript applications.
