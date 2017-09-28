@@ -2,9 +2,51 @@
   "name": "octane-electron-test",
   "version": "1.0.0",
   "description": "A minimal Electron application",
-  "main": "main.js",
+  "main": "./main.js",
   "scripts": {
-    "dev": "electron ."
+    "dev": "electron .",
+    "postinstall": "install-app-deps",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "release": "electron-builder",
+    "electron-build-win": "electron-builder --win",
+    "electron-build-mac": "electron-builder --mac",
+    "electron-build-lin": "electron-builder --linux",
+    "electron-build-all": "npm run electron-build-win && npm run electron-build-mac && npm run electron-build-lin"
+  },
+  "electronBuilder": {
+    "build": {
+      "productName": "Bynder Orbit Desktop",
+      "appId": "BynderOrbit.Desktop",
+      "publish": [
+        {
+          "provider": "generic",
+          "url": "http://127.0.0.1:8080/"
+        }
+      ],
+      "asar": false,
+      "win": {
+        "iconUrl": "http://localhost:5000/images/eikos-logo-multi.ico",
+        "target": "nsis"
+      },
+      "nsis": {
+        "oneClick": false,
+        "allowElevation": false
+      },
+      "linux": {
+        "target": "AppImage",
+        "category": "Development"
+      },
+      "mac": {
+        "category": "public.app-category.productivity",
+        "output": "dmg"
+      }
+    },
+    "directories": {
+      "output": "electron/output",
+      "app": "electron/app",
+      "buildResources": "electron/buildResources"
+    }
   },
   "keywords": [
     "Electron",
@@ -17,5 +59,8 @@
   "license": "CC0-1.0",
   "devDependencies": {
     "electron": "^1.6.12"
+  },
+  "dependencies": {
+    "electron-updater": "^2.10.1"
   }
 }
